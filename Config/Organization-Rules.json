@@ -1,9 +1,46 @@
 {
-  "Documents": [".pdf", ".doc", ".docx", ".txt", ".md"],
-  "Spreadsheets": [".xlsx", ".xls", ".xlsm", ".csv"],
-  "Presentations": [".ppt", ".pptx"],
-  "Images": [".jpg", ".jpeg", ".png", ".gif", ".svg", ".webp"],
-  "Videos": [".mp4", ".mkv", ".avi", ".mov"],
-  "Archives": [".zip", ".rar", ".7z", ".iso"],
-  "Installers": [".exe", ".msi", ".msix", ".appinstaller"]
+  "Documents": [
+    ".pdf",
+    ".doc",
+    ".docx",
+    ".txt",
+    ".md"
+  ],
+  "Spreadsheets": [
+    ".xlsx",
+    ".xls",
+    ".xlsm",
+    ".csv"
+  ],
+  "Presentations": [
+    ".ppt",
+    ".pptx"
+  ],
+  "Images": [
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".gif",
+    ".svg",
+    ".webp"
+  ],
+  "Videos": [
+    ".mp4",
+    ".mkv",
+    ".avi",
+    ".mov"
+  ],
+  "Archives": [
+    ".zip",
+    ".rar",
+    ".7z",
+    ".iso"
+  ],
+  "Installers": [
+    ".exe",
+    ".msi",
+    ".msix",
+    ".appinstaller"
+  ]
 }
+

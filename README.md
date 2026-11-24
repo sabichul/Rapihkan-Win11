@@ -36,6 +36,14 @@
 
 Choose a menu item, wait for the status to finish, then review the result. Scans of folders with many files can take longer.
 
+### Open the portable desktop window
+
+The desktop window is optional. It runs from this folder and does not install anything, create a shortcut, or change Windows settings.
+
+```powershell
+& '.\Start-RapihkanWin11-GUI.ps1'
+```
+
 ## What it can do
 
 | Icon | Menu item | What it does |
@@ -77,6 +85,60 @@ Checks do not change files. Actions are available only for temporary files that 
 > [!TIP]
 > Type anything other than `YES` at any warning to cancel. Rapihkan Win11 does not move files until all three confirmations are complete.
 
+## Review and restore Quarantine
+
+List files that have been moved to Quarantine, then copy a `ManifestPath` from the result when you want to restore one file.
+
+```powershell
+& '.\Windows11-Maintenance.ps1' -Mode Quarantine
+& '.\Windows11-Maintenance.ps1' -Mode RestoreQuarantine -ManifestPath '.\Quarantine\Q-example\manifest.json'
+```
+
+Restoring a file also requires three `YES` confirmations. The restore is refused if a file already exists at the original location.
+
+## Preview only the files you select
+
+First create an organization plan. Then pass only the source paths you approved to `ApplySelectedOrganize`.
+
+```powershell
+$plan = & '.\Windows11-Maintenance.ps1' -Mode Organize -Path 'C:\Users\Name\Downloads'
+$plan | Format-Table Source, Destination, Category, Risk
+& '.\Windows11-Maintenance.ps1' -Mode ApplySelectedOrganize -Path 'C:\Users\Name\Downloads' -Source 'C:\Users\Name\Downloads\example.pdf'
+```
+
+Only selected files with a `YELLOW` risk label pass the move safety checks.
+
+## Customize categories and excluded folders
+
+Add a category by giving it a name and one or more extensions. Add a folder to the exclusion list when Rapihkan Win11 must never organize files inside it.
+
+```powershell
+& '.\Windows11-Maintenance.ps1' -Mode AddCategory -CategoryName 'Work files' -Extension '.drawio','.vsdx'
+& '.\Windows11-Maintenance.ps1' -Mode AddExclusion -Path 'C:\Users\Name\Projects'
+& '.\Windows11-Maintenance.ps1' -Mode RemoveExclusion -Path 'C:\Users\Name\Projects'
+```
+
+Your exclusion list is stored in `Config\User-Exclusions.json`, which Git ignores to protect your private paths. `Config\User-Exclusions.example.json` is the safe template kept in the repository.
+
+## Review caches, history, and reports
+
+```powershell
+& '.\Windows11-Maintenance.ps1' -Mode CacheReview
+& '.\Windows11-Maintenance.ps1' -Mode History
+```
+
+Cache review shows paths and size only. It does not clear browser or developer caches. HTML reports use a local dashboard layout and stay under `Reports`.
+
+## Schedule an audit-only report
+
+> [!WARNING]
+> This is the only feature that creates a Windows Scheduled Task. It runs `Audit` with `-ExportReport`; it never cleans, organizes, or moves files.
+
+```powershell
+& '.\Windows11-Maintenance.ps1' -Mode ScheduleAudit -ScheduleTime '09:00'
+& '.\Windows11-Maintenance.ps1' -Mode RemoveSchedule
+```
+
 ## Safety boundaries
 
 - Does not permanently delete files.
@@ -112,6 +174,10 @@ These folders are excluded from Git because they can contain personal paths or f
 ## Contributing and license
 
 Read the [contribution guide](CONTRIBUTING.md) before sending changes. This project uses the [MIT License](LICENSE).
+
+## GitHub automation
+
+The repository includes `.github/workflows/validate-and-release.yml`. Pull requests and pushes to `main` parse every PowerShell script, run the safety tests, lint Markdown, and build a portable ZIP with a SHA-256 checksum. Push a tag such as `v1.2.0` to create a GitHub Release with those two files.
 
 ## Test changes
 

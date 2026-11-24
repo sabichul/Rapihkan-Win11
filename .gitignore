@@ -3,6 +3,7 @@ Reports/
 Logs/
 Backup/
 Quarantine/
+Config/User-Exclusions.json
 
 # PowerShell and editor files
 *.zip

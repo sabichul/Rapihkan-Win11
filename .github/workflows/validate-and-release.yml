@@ -1,0 +1,50 @@
+name: Validate and release
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse and run safety tests
+        shell: pwsh
+        run: |
+          ./Tests/Toolkit-Tests.ps1
+          ./Tests/Path-Validation-Tests.ps1
+          ./Tests/Safety-Tests.ps1
+      - name: Lint Markdown
+        shell: pwsh
+        run: npx markdownlint-cli@0.50.0 README.md CONTRIBUTING.md CHANGELOG.md Validation-Report.md
+      - name: Build portable ZIP and checksum
+        shell: pwsh
+        run: |
+          Compress-Archive -Path * -DestinationPath Rapihkan-Win11.zip -CompressionLevel Optimal -Force
+          (Get-FileHash Rapihkan-Win11.zip -Algorithm SHA256).Hash + '  Rapihkan-Win11.zip' | Set-Content Rapihkan-Win11.zip.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Rapihkan-Win11
+          path: |
+            Rapihkan-Win11.zip
+            Rapihkan-Win11.zip.sha256
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: validate
+    runs-on: windows-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: Rapihkan-Win11
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            Rapihkan-Win11.zip
+            Rapihkan-Win11.zip.sha256

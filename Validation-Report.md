@@ -10,6 +10,8 @@ Validation date: November 24, 2026
 - The standalone launcher ran in non-interactive audit mode.
 - System-path, safe-move sandbox, and reversible organization-action tests passed.
 - The organization test uses a sandbox and replaces the three-confirmation prompt. Normal users must still type `YES` three times.
+- All 26 PowerShell scripts parse successfully after the portable enhancement update.
+- Cache review, custom category and exclusion configuration, and the local HTML dashboard report passed targeted validation.
 
 ## Checks not automated
 
@@ -17,6 +19,7 @@ Validation date: November 24, 2026
 - PSScriptAnalyzer is not installed and is not installed automatically.
 - Windows PowerShell 5.1 compatibility has not been tested.
 - Quarantine restore with locked files and organization against real user data need manual testing.
+- The portable GUI and the optional audit schedule need manual testing in an interactive Windows session. The validation did not create a scheduled task.
 
 ## Computer state during the audit
 

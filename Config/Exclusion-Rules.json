@@ -1,0 +1,5 @@
+{
+  "ProtectedPaths": ["C:\\Windows", "C:\\Program Files", "C:\\Program Files (x86)", "C:\\ProgramData", "C:\\Recovery", "C:\\Boot", "C:\\System Volume Information"],
+  "ProtectedNames": ["pagefile.sys", "hiberfil.sys", "swapfile.sys", "bootmgr"],
+  "ExcludeDirectoryNames": [".git", ".svn", "node_modules", "AppData"]
+}

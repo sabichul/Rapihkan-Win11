@@ -1,0 +1,2 @@
+. "$PSScriptRoot\Quarantine-Manager.ps1"
+function Invoke-ToolkitRollback { [CmdletBinding(SupportsShouldProcess=$true)]param([Parameter(Mandatory)][string]$ManifestPath);Restore-QuarantinedFile -ManifestPath $ManifestPath -WhatIf:$WhatIfPreference }

@@ -1,0 +1,1 @@
+function Find-DeveloperCache { [CmdletBinding()]param();@("$env:LOCALAPPDATA\pip\Cache","$env:APPDATA\npm-cache","$env:USERPROFILE\.nuget\packages")|Where-Object {Test-Path -LiteralPath $_}|ForEach-Object {[pscustomobject]@{Path=$_;Risk='YELLOW';Action='Review only';Reason='Regenerable cache; cleanup can require re-download'}} }

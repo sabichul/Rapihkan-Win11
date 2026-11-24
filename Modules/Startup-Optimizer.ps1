@@ -1,0 +1,1 @@
+function Get-StartupAnalysis { [CmdletBinding()]param();Get-CimInstance Win32_StartupCommand -ErrorAction SilentlyContinue|ForEach-Object {[pscustomobject]@{Name=$_.Name;Command=$_.Command;Location=$_.Location;Risk='YELLOW';Recommendation='Review manually; automatic disabling is prohibited'}} }

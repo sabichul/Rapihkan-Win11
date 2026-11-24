@@ -1,0 +1,1 @@
+function Get-StorageOptimizationAnalysis { [CmdletBinding()]param();Get-Volume -ErrorAction SilentlyContinue|Where-Object DriveLetter|ForEach-Object {[pscustomobject]@{Drive="$($_.DriveLetter):";FileSystem=$_.FileSystem;SizeGB=[math]::Round($_.Size/1GB,2);FreeGB=[math]::Round($_.SizeRemaining/1GB,2);Recommendation='Review Windows Optimize Drives; no optimization executed.'}} }

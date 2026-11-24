@@ -1,0 +1,2 @@
+param([string]$ToolkitRoot=(Split-Path -Parent $PSScriptRoot))
+$files=Get-ChildItem -LiteralPath $ToolkitRoot -Filter '*.ps1' -Recurse;$errors=@();foreach($f in $files){$t=$null;$e=$null;[Management.Automation.Language.Parser]::ParseFile($f.FullName,[ref]$t,[ref]$e)|Out-Null;if($e.Count){$errors+="$($f.Name): $($e.Message -join '; ')"}};if($errors){throw ($errors -join "`n")};"PASSED: $($files.Count) PowerShell files parsed"

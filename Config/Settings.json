@@ -1,0 +1,10 @@
+{
+  "ToolkitName": "Rapihkan Win11",
+  "Version": "1.1.0",
+  "DefaultMode": "Audit",
+  "Language": "en-US",
+  "Safety": { "RiskTolerance": "Low", "RequireApproval": true, "RequiredApprovalCount": 3, "RequireDryRun": true, "ProtectSystemFiles": true, "ProtectPersonalFiles": true, "ProtectDeveloperFiles": true, "ProtectCloudFiles": true, "AllowPermanentDeletion": false, "AllowAutomaticRestart": false, "AllowExternalUpload": false },
+  "Scanning": { "ScanLocalFixedDrives": true, "FollowReparsePoints": false, "HydrateCloudFiles": false, "DuplicateHashAlgorithm": "SHA256", "LargeFileThresholdMB": 100, "MaximumItemsPerDirectory": 50000 },
+  "Cleanup": { "TemporaryFileMinimumAgeDays": 7, "LogFileMinimumAgeDays": 30, "IncludeBrowserCache": false, "IncludeDeveloperCache": false },
+  "Quarantine": { "Enabled": true, "RetentionDays": 30, "AutomaticPurge": false }
+}

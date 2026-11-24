@@ -1,0 +1,11 @@
+# Generated local data; may contain personal file names or paths.
+Reports/
+Logs/
+Backup/
+Quarantine/
+
+# PowerShell and editor files
+*.zip
+*.sha256
+*.bak
+.vscode/

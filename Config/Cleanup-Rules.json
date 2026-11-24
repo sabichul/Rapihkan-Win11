@@ -1,0 +1,5 @@
+{
+  "LowRisk": ["UserTempOlderThanMinimumAge", "WindowsErrorReportingArchive", "CrashDumps"],
+  "ReviewOnly": ["RecycleBin", "BrowserCache", "DeveloperCache", "OldInstallers", "DuplicateFiles", "WindowsUpdate", "WindowsOld"],
+  "NeverDelete": ["SystemFiles", "AppData", "Credentials", "Databases", "SourceCode", "GitDirectories", "CloudPlaceholders"]
+}

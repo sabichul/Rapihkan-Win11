@@ -1,0 +1,1 @@
+function Invoke-DeepCleanup { [CmdletBinding(SupportsShouldProcess=$true)]param([switch]$Apply);[pscustomobject]@{Mode='DryRun';Status='Not executed';Risk='YELLOW';Reason='Deep cleanup needs explicit category-by-category approval.'} }

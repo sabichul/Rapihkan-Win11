@@ -1,0 +1,2 @@
+. "$PSScriptRoot\Common-Utilities.ps1"
+function New-BackupManifest { [CmdletBinding()]param([string[]]$Paths);$data=$Paths|Where-Object {Test-Path -LiteralPath $_}|ForEach-Object {$i=Get-Item -LiteralPath $_;[pscustomobject]@{Path=$i.FullName;Type=if($i.PSIsContainer){'Folder'}else{'File'};SizeBytes=if($i.PSIsContainer){0}else{$i.Length}}};New-OperationManifest -Items $data -Type 'BackupManifest' -Folder 'Audit' }

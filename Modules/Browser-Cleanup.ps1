@@ -1,0 +1,1 @@
+function Find-BrowserCache { [CmdletBinding()]param();@("$env:LOCALAPPDATA\Google\Chrome\User Data","$env:LOCALAPPDATA\Microsoft\Edge\User Data","$env:APPDATA\Mozilla\Firefox\Profiles")|Where-Object {Test-Path -LiteralPath $_}|ForEach-Object {[pscustomobject]@{Path=$_;Risk='YELLOW';Action='Review only';Reason='Browser profiles may contain sessions, cookies and credentials'}} }

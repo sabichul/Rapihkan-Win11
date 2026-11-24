@@ -1,0 +1,2 @@
+. "$PSScriptRoot\Common-Utilities.ps1"
+function New-ToolkitHtmlReport { [CmdletBinding()]param([Parameter(Mandatory)]$Data,[string]$Title='Maintenance Report');Initialize-ToolkitFolders;$safe=[System.Net.WebUtility]::HtmlEncode(($Data|ConvertTo-Json -Depth 8));$p=Join-Path (Join-Path (Get-ToolkitPaths).Reports 'Audit') "Report-$(Get-NowStamp).html";"<html><meta charset='utf-8'><title>$Title</title><body style='font-family:Segoe UI;margin:2rem'><h1>$Title</h1><pre>$safe</pre></body></html>"|Set-Content $p -Encoding utf8;$p }

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Rebuilt the portable desktop window as a responsive control-room layout with sidebar navigation, a status header, readable result panel, and consistent spacing.
+
 ## 1.2.0
 
 - Added a portable WinForms desktop window; no installer or shortcut is required.
